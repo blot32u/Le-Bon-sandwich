@@ -1,6 +1,6 @@
 services:
-  iut_service:
-    container_name: iut_service
+  iut_commandes:
+    container_name: iut_commandes
     image: node:lts
     env_file: ./service/.env
     working_dir: /usr/src/app
@@ -16,6 +16,23 @@ services:
     networks:
       - iut
   
+  iut_suivi:
+    container_name: iut_suivi
+    image: node:lts
+    env_file: ./service/.env
+    working_dir: /usr/src/app
+    volumes:
+      - ./service/suivi:/usr/src/app
+    ports:
+      - 3332:3000
+    command: npm start
+    depends_on:
+      - iut_db
+    links:
+      - iut_db
+    networks:
+      - iut
+
   iut_adminer:
     container_name: iut_adminer
     image: adminer

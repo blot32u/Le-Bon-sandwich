@@ -32,6 +32,36 @@ services:
       - iut_db
     networks:
       - iut
+  
+  iut_auth:
+    container_name: iut_auth
+    image: node:lts
+    env_file: ./service/.env
+    working_dir: /usr/src/app
+    volumes:
+      - ./service/auth:/usr/src/app
+    ports:
+      - 3331:3000
+    command: npm start
+    depends_on:
+      - iut_db
+    links:
+      - iut_db
+    networks:
+      - iut
+  
+  iut_gatewayBack:
+    container_name: gatewayBack
+    image: node:lts
+    env_file: ./service/.env
+    working_dir: /usr/src/app
+    volumes:
+      - ./service/gatewayBack:/usr/src/app
+    ports:
+      - 3334:3000
+    command: npm start
+    networks:
+      - iut
 
   iut_adminer:
     container_name: iut_adminer

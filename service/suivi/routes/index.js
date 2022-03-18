@@ -17,7 +17,6 @@ router.get('/commandes', async (req, res, next) =>{
     }else{
       commandes = await db('commande');
     }
-    console.log(req.query.size);
     res.json(commandes_list(commandes, commandes.length, req.query.page, req.query.size));
   } catch (error) {
     res.status(500).send({

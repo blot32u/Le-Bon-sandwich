@@ -8,9 +8,8 @@ function getCommandes (commandes, length, page = 1, size = 10) {
     "count": length,
     "size": 0,
     "commands": []} ;
-    var numCommand = ((page-1)*size);
-    let slice =  parseInt(numCommand) + parseInt(size);
-    console.log("SLice2: " + (slice));
+    const numCommand = ((page-1)*size);
+    const slice =  parseInt(numCommand) + parseInt(size);
     for (const commande of commandes.slice(numCommand, slice)) {
         collection.commands.push({ 
             "command": {

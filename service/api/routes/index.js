@@ -140,10 +140,6 @@ router.post('/commandes', async(req, res) =>{
     });
   }
   else{
-
-  
-  
-  
   try {
     const uid = uuidV4.v4(); 
     const token = generateAccessToken({ string: uid  });
